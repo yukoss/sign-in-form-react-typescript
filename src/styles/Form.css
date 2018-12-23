@@ -1,0 +1,8 @@
+.form {
+  margin: 0 auto;
+  padding: 40px 30px;
+  max-width: 450px;
+  transform: translateY(75%);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 5px rgba(125, 125, 125, 0.5);
+}
