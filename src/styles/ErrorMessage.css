@@ -1,0 +1,7 @@
+p {
+  color: var(--color-red);
+}
+
+p span {
+  text-transform: capitalize;
+}

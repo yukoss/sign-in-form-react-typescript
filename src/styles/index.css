@@ -1,8 +1,9 @@
 :root {
-  --color-grey: #eee;
+  --color-grey: #eeeeee;
   --color-grey-dark: #a1a1a1;
   --color-green: #60b977;
   --color-green-dark: #4a8c5b;
+  --color-red: crimson;
   --border-radius: 10px;
 }
 
