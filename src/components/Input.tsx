@@ -1,16 +1,14 @@
 import * as React from 'react'
 import '../styles/Input.css'
 
-import { ChangeEvent } from './Form'
 import ErrorMessage from './ErrorMessage'
+import { WithFormContext, WithFormProps } from './WithFormContext'
 
 interface InputProps {
   label: string
   type?: string
   name: string
-  value: string
   placeholder?: string
-  handleChange: (event: ChangeEvent) => void
 }
 
 interface InputState {
@@ -19,7 +17,7 @@ interface InputState {
   lastFocus: boolean
 }
 
-class Input extends React.Component<InputProps, InputState> {
+class Input extends React.Component<WithFormProps<InputProps>, InputState> {
   static defaultProps = {
     type: 'text',
   }
@@ -31,28 +29,19 @@ class Input extends React.Component<InputProps, InputState> {
   }
 
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, validationMessage: error }: Partial<HTMLInputElement> = event.target;
+    const { value, name }: Partial<HTMLInputElement> = event.target;
     
-    this.setState({ value, error })
+    this.props.ctx.handleChange({ name, value });
   }
 
   onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const { name } = this.props
-    const { value, error } = this.state
-
     this.setState({ lastFocus: true })
-
-    this.props.handleChange({
-      name,
-      value,
-      error,
-    })
   }
 
   public render() {
-    const { label, name, type, placeholder } = this.props
-    const { value, error, lastFocus } = this.state
-
+    const { label, name, type, placeholder, ctx } = this.props
+    const { error, lastFocus } = this.state
+    
     return (
       <div className="input-field">
         <label htmlFor={name} className="label">
@@ -63,7 +52,7 @@ class Input extends React.Component<InputProps, InputState> {
           className="input"
           type={type}
           name={name}
-          value={value}
+          value={ctx.state[name]}
           onChange={this.onChange}
           onBlur={this.onBlur}
           placeholder={placeholder}
@@ -75,4 +64,4 @@ class Input extends React.Component<InputProps, InputState> {
   }
 }
 
-export default Input
+export default WithFormContext<InputProps>(Input)

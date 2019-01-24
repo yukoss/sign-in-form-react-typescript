@@ -5,6 +5,7 @@ import Input from './Input'
 // import { isEmpty, isEmail } from '../helpers/validation'
 
 import '../styles/Form.css'
+import FormProvider from './FormProvider';
 
 interface FormState {
   email: string
@@ -40,8 +41,6 @@ class Form extends React.Component<any, FormState> {
   }
 
   public handleValidation() {
-    // const { errors } = this.state;
-
     Object.keys(this.state).map((prop) => {
       // 
     })
@@ -60,26 +59,22 @@ class Form extends React.Component<any, FormState> {
   }
 
   public render() {
-    const { email, password } = this.state
-
     return (
-      <form action="/" method="post" className="form" autoComplete="off">
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          value={email}
-          handleChange={this.handleChange}
-        />
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          value={password}
-          handleChange={this.handleChange}
-        />
-        <Button name="Sign In" onSubmit={this.handleSubmit} />
-      </form>
+      <FormProvider >
+        <form action="/" method="post" className="form" autoComplete="off">
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+          />
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+          />
+          <Button name="Sign In" onSubmit={this.handleSubmit} />
+        </form>
+      </FormProvider>
     )
   }
 }
