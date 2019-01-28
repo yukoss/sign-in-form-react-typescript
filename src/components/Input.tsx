@@ -40,7 +40,7 @@ class Input extends React.Component<WithFormProps<InputProps>, InputState> {
 
   public render() {
     const { label, name, type, placeholder, ctx } = this.props
-    const { error, lastFocus } = this.state
+    const { lastFocus } = this.state
     
     return (
       <div className="input-field">
@@ -52,13 +52,13 @@ class Input extends React.Component<WithFormProps<InputProps>, InputState> {
           className="input"
           type={type}
           name={name}
-          value={ctx.state[name]}
+          value={ctx.state[name].value}
           onChange={this.onChange}
           onBlur={this.onBlur}
           placeholder={placeholder}
           required={true}
         />
-        {lastFocus && error && (<ErrorMessage name={name} />)}
+        {lastFocus && ctx.state[name].error && (<ErrorMessage name={ctx.state[name].error} />)}
       </div>
     )
   }

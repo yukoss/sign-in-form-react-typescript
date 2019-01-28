@@ -49,10 +49,10 @@ class Form extends React.Component<any, FormState> {
   }
 
   public handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    // event.preventDefault()
+    event.preventDefault();
 
     if (this.handleValidation()) {
-      // Send data
+      // Send 
     } else {
       return
     }

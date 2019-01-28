@@ -6,7 +6,7 @@ interface ErrorMessageProps {
 }
 
 const ErrorMessage = (props: ErrorMessageProps) => (
-  <p><span>{props.name}</span> is not valid.</p>
+  <p><span>{props.name}</span></p>
 )
 
 export default ErrorMessage
